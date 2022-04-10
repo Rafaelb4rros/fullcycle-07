@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreatePixKeyTable1612385462493 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

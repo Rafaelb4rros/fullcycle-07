@@ -11,20 +11,20 @@ import { BankAccount } from './bank-account.model';
 import { PixKeyKind } from './pix-key.model';
 import { v4 as uuidv4 } from 'uuid';
 
-export enum TransactionStatus{
+export enum TransactionStatus {
   pending = 'pending',
   completed = 'completed',
-  error = 'error'
-};
+  error = 'error',
+}
 
 export enum TransactionOperation {
   debit = 'debit',
-  credit = 'credit'
+  credit = 'credit',
 }
 
 @Entity({ name: 'transactions' })
 export class Transaction {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -37,14 +37,14 @@ export class Transaction {
   description: string;
 
   @ManyToOne(() => BankAccount)
-  @JoinColumn({name: "bank_account_id"})
+  @JoinColumn({ name: 'bank_account_id' })
   bankAccount: BankAccount;
 
   @Column()
   bank_account_id: string;
 
   @ManyToOne(() => BankAccount)
-  @JoinColumn({name: "bank_account_from_id"})
+  @JoinColumn({ name: 'bank_account_from_id' })
   bankAccountFrom: BankAccount;
 
   @Column()
@@ -60,7 +60,7 @@ export class Transaction {
   status: TransactionStatus = TransactionStatus.pending;
 
   @Column()
-  operation: TransactionOperation
+  operation: TransactionOperation;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;

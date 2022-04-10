@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -27,7 +28,7 @@ import { TransactionSubscriber } from './subscribers/transaction-subscriber/tran
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
-      entities: [BankAccount, PixKey, Transaction]
+      entities: [BankAccount, PixKey, Transaction],
     }),
     TypeOrmModule.forFeature([BankAccount, PixKey, Transaction]),
     ClientsModule.register([
@@ -37,9 +38,9 @@ import { TransactionSubscriber } from './subscribers/transaction-subscriber/tran
         options: {
           url: process.env.GRPC_URL,
           package: 'github.com.rafaelb4rros.fullcycle07',
-          protoPath: [join(__dirname, 'protofiles/pixkey.proto')]
-        }
-      }
+          protoPath: [join(__dirname, 'protofiles/pixkey.proto')],
+        },
+      },
     ]),
     ClientsModule.register([
       {
@@ -48,19 +49,26 @@ import { TransactionSubscriber } from './subscribers/transaction-subscriber/tran
         options: {
           client: {
             clientId: process.env.KAFKA_CLIENT_ID,
-            brokers: [process.env.KAFKA_BROKER]
+            brokers: [process.env.KAFKA_BROKER],
           },
           consumer: {
-            groupId: !process.env.KAFKA_CONSUMER_GROUP_ID ||
+            groupId:
+              !process.env.KAFKA_CONSUMER_GROUP_ID ||
               process.env.KAFKA_CONSUMER_GROUP_ID === ''
                 ? 'my-consumer-' + Math.random()
                 : process.env.KAFKA_CONSUMER_GROUP_ID,
-          }
-        }
-      }
-    ])
+          },
+        },
+      },
+    ]),
   ],
-  controllers: [AppController, MyFirstController, BankAccountController, PixKeyController, TransactionController],
+  controllers: [
+    AppController,
+    MyFirstController,
+    BankAccountController,
+    PixKeyController,
+    TransactionController,
+  ],
   providers: [AppService, FixturesCommand, TransactionSubscriber],
 })
 export class AppModule {}
