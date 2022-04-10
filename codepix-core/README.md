@@ -13,6 +13,7 @@
 - [Protocol Buffers](https://developers.google.com/protocol-buffers)
 - [Apache Kafka](https://kafka.apache.org/)
 - [Docker](https://www.docker.com/)
+- [Cobra](https://github.com/spf13/cobra)
 
 ## CODEPIX-BACKEND
 
