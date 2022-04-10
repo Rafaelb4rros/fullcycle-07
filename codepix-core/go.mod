@@ -9,5 +9,7 @@ require (
 	github.com/lib/pq v1.10.5
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.7.1
+	google.golang.org/grpc v1.45.0
+	google.golang.org/protobuf v1.26.0
 	gorm.io/driver/sqlite v1.3.1
 )
