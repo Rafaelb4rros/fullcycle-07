@@ -46,6 +46,7 @@ func (t *TransactionUseCase) Confirm(transactionId string) (*model.Transaction, 
 	}
 
 	transaction.Status = model.TransactionConfirmed
+
 	err = t.TransactionRepository.Save(transaction)
 	if err != nil {
 		return nil, err

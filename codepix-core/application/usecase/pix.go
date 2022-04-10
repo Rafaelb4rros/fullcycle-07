@@ -13,6 +13,7 @@ func (p *PixUseCase) RegisterKey(key string, kind string, accountId string) (*mo
 	}
 
 	pixKey, err := model.NewPixKey(kind, account, key)
+
 	if err != nil {
 		return nil, err
 	}
@@ -30,5 +31,6 @@ func (p *PixUseCase) FindKey(key string, kind string) (*model.PixKey, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return pixKey, nil
 }

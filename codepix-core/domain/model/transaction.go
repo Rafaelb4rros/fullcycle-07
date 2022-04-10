@@ -48,18 +48,17 @@ func (t *Transaction) isValid() error {
 		return errors.New("the amount must be greater than 0")
 	}
 
-	if t.Status != TransactionCompleted && t.Status != TransactionConfirmed && t.Status != TransactionError && t.Status != TransactionPending {
-		return errors.New("invalid transaction status")
+	if t.Status != TransactionPending && t.Status != TransactionCompleted && t.Status != TransactionError {
+		return errors.New("invalid status for the transaction")
 	}
 
-	if t.PixKeyTo.AccountID == t.AccountFrom.ID {
-		return errors.New("the source and destination origin cannot be the same")
+	if t.PixKeyTo.AccountID == t.AccountFromID {
+		return errors.New("the source and destination account cannot be the same")
 	}
 
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
@@ -70,17 +69,10 @@ func (t *Transaction) Complete() error {
 	return err
 }
 
-func (t *Transaction) Confirm() error {
-	t.Status = TransactionConfirmed
-	t.UpdatedAt = time.Now()
-	err := t.isValid()
-	return err
-}
-
 func (t *Transaction) Cancel(description string) error {
 	t.Status = TransactionError
+	t.CancelDescription = description
 	t.UpdatedAt = time.Now()
-	t.Description = description
 	err := t.isValid()
 	return err
 }
