@@ -2,6 +2,12 @@
 /dist
 /node_modules
 
+.history/
+.docker/dbdata
+.docker/dbdatabbx
+.docker/dbdatacter
+dist-bbx
+dist-cter
 # Logs
 logs
 *.log
