@@ -13,7 +13,7 @@ services:
       - db
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
-
+  
   db:
     build: .docker/postgres
     container_name: imersao-fullcycle-nest-bank-db

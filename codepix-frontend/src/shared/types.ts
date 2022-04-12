@@ -28,6 +28,7 @@ export enum TransactionOperation {
 }
 
 export interface Transaction {
+  created_at_formatted: string;
   id: string;
   amount: number;
   description: string;
